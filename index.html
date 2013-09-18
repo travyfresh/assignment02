@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Validation Form</title>
+		<script type="text/javascript">
+			
+			function validate() {
+				var form = document.getElementById('user')['name'].value;
+				if(form == "") alert("Please fill out the Name field.");
+				if(form != ""){
+					document.getElementById('output').innerHTML = "Hi " + form + ",";
+				}
+				var form = document.getElementById('user')['email'].value;
+				if(form == "") alert("Please fill out the Email field.");
+				if(form != ""){
+					document.getElementById('output').innerHTML += "<br />" + "Your email is " + form + " and ";
+				}
+				var whichRadio = document.getElementsByName("pet");
+				var len = whichRadio.length;
+				
+				for(i=0;i<len;i++){
+					if(whichRadio[i].checked){
+					document.getElementById('output').innerHTML += "you have a " + whichRadio[i].value;
+					}
+				}
+				var radio1 = document.getElementById('cat').checked;
+				var radio2 = document.getElementById('dog').checked;
+				var radio3 = document.getElementById('other').checked;
+				if((radio1 == "")&&(radio2 == "")&&(radio3 == "")){
+					alert("Please select a Pet option.");
+				}
+				return false;
+			}
+			
+		</script>
+		<style type="text/css">
+		label {
+			display: inline-block;
+			width: 70px;
+		}
+		
+		#output {
+			width:100%; 
+			background: #CCC;
+			border: 1px solid;
+			padding: 10px;
+		}
+			
+		</style>
+	</head>
+	<body>
+		<form name="user" id="user" action="" method="post" onSubmit="return validate()">
+			<label>Name</label><input type="text" name="name"><br>
+			<label>Email</label><input type="text" name="email"><br>
+			<label>Pet</label><input type="radio" name="pet" id="cat" value="cat">Cat<br>
+			<label></label><input type="radio" name="pet" id="dog" value="dog">Dog<br>
+			<label></label><input type="radio" name="pet" id="other" value="other">Other<br>
+			<label></label><input type="submit" name="submit" value="Submit">
+			
+		</form>
+		<h1><b>Output</b></h1>
+		<div id="output">
+			
+		</div>
+		
+	</body>
+</html>
